@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const { MONGO_USER, MONGO_PASSWORD, MONGO_IP, MONGO_PORT } = require("./config/config");
 
 const postRouter = require('./routes/postRoutes');
+const userRouter = require('./routes/userRoutes');
 
 const app = express();
 
@@ -27,10 +28,11 @@ connectWithRetry();
 app.use(express.json());
 
 app.get("/", (req, res) => {
-    res.send("<h2>Hi There!!</h2>");
+    res.send("<h2>Welcome to the app</h2>");
 });
 
 app.use("/api/v1/posts", postRouter);
+app.use("/api/v1/users", userRouter);
 
 const port = process.env.PORT || 3000;
 
